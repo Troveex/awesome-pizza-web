@@ -10,7 +10,7 @@ const BaseCard: React.FC<IProps> = (props: IProps): React.ReactElement => {
     const { title, subTitle, urlImg, cardAction } = props;
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 2345 }}>
             {urlImg && (<CardMedia
                 component="img"
                 height="140"
