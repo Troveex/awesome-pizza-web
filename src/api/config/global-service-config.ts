@@ -1,6 +1,6 @@
 import type { ConfigFile } from "@rtk-query/codegen-openapi";
 
-const baseUrl = "https://localhost:7150/";
+const baseUrl = "https://localhost:8443/";
 
 const config: ConfigFile = {
     schemaFile: `../schema/swagger.json`,
