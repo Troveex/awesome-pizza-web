@@ -1,0 +1,272 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/order/update-status": {
+            "put": {
+                "tags": [
+                    "order-controller"
+                ],
+                "operationId": "updateStatus",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderUpdateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/order/create": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "operationId": "create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderCreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderCreateResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/pizza/getPizza": {
+            "get": {
+                "tags": [
+                    "pizza-controller"
+                ],
+                "operationId": "getPizza",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PizzaSearchResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/order/search": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "operationId": "search",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderSearchResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/lookup/getStatus": {
+            "get": {
+                "tags": [
+                    "lookup-controller"
+                ],
+                "operationId": "getStatus",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LookupDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "OrderUpdateRequest": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OrderCreateRequest": {
+                "type": "object",
+                "properties": {
+                    "order": {
+                        "$ref": "#/components/schemas/OrderDto"
+                    }
+                }
+            },
+            "OrderDto": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "deleted": {
+                        "type": "boolean"
+                    },
+                    "deletionDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "creationUser": {
+                        "type": "string"
+                    },
+                    "modificationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "pizzas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PizzaDto"
+                        }
+                    }
+                }
+            },
+            "PizzaDto": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "OrderCreateResponse": {
+                "type": "object",
+                "properties": {
+                    "response": {
+                        "$ref": "#/components/schemas/ResponseDto"
+                    }
+                }
+            },
+            "PizzaSearchResponse": {
+                "type": "object",
+                "properties": {
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PizzaDto"
+                        }
+                    }
+                }
+            },
+            "OrderSearchResponse": {
+                "type": "object",
+                "properties": {
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderDto"
+                        }
+                    }
+                }
+            },
+            "LookupDto": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
