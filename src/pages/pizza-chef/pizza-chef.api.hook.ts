@@ -1,14 +1,14 @@
-import { ServiceApiBase } from "../../api/src/generated";
+import { ServiceApi } from "../../api/src/enhanced";
 
 
 const usePizzaChefApiHook = () => {
 
-    const [getSearchOrder, { data: getSearchOrderResponse, isLoading: getSearchOrderLoading }] = ServiceApiBase.useLazySearchQuery();
+    const [getSearchOrder, { data: getSearchOrderResponse, isLoading: getSearchOrderLoading }] = ServiceApi.useLazySearchQuery();
     const getSearchOrderPrivate = () => {
         getSearchOrder();
     };
 
-    const [setUpdateStatus, { data: setUpdateStatusResponse, isLoading: setUpdateStatusLoading }] = ServiceApiBase.useUpdateStatusMutation();
+    const [setUpdateStatus, { data: setUpdateStatusResponse, isLoading: setUpdateStatusLoading }] = ServiceApi.useUpdateStatusMutation();
     const updateStatusPrivate = (code: string, status: string) => {
         setUpdateStatus({
             orderUpdateRequest: {
@@ -18,7 +18,7 @@ const usePizzaChefApiHook = () => {
         });
     };
 
-    const { data: lookupStatusResponse, isLoading: lookupGetProdottoPfLoading } = ServiceApiBase.useGetStatusQuery();
+    const { data: lookupStatusResponse, isLoading: lookupGetProdottoPfLoading } = ServiceApi.useGetStatusQuery();
 
     return {
         getSearchOrder: getSearchOrderPrivate,

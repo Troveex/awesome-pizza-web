@@ -1,9 +1,9 @@
-import { ServiceApiBase } from "../../api/src/generated";
+import { ServiceApi } from "../../api/src/enhanced";
 
 
 const useCustomersApiHook = () => {
 
-    const [getSearchCustomer, { data: getSearchCustomerResponse, isLoading: getSearchCustomerLoading }] = ServiceApiBase.useLazyGet1Query();
+    const [getSearchCustomer, { data: getSearchCustomerResponse, isLoading: getSearchCustomerLoading }] = ServiceApi.useLazyGet1Query();
     const getSearchCustomerPrivate = () => {
         getSearchCustomer();
     };

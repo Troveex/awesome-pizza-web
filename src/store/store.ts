@@ -1,10 +1,10 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { ServiceApiBase } from "../api/src/generated";
+import { configureStore } from "@reduxjs/toolkit";
+import { ServiceApi } from "../api/src/enhanced";
 
 
 export const store = configureStore({
     reducer: {
-        [ServiceApiBase.reducerPath]: ServiceApiBase.reducer
+        [ServiceApi.reducerPath]: ServiceApi.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         immutableCheck: true,
@@ -15,14 +15,5 @@ export const store = configureStore({
             }
         }
     })
-        .concat(ServiceApiBase.middleware)
+        .concat(ServiceApi.middleware)
 });
-
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-    ReturnType,
-    RootState,
-    unknown,
-    Action<string>
->;
