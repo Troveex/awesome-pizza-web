@@ -10,7 +10,7 @@ const config: ConfigFile = {
     argSuffix: "ApiRequest",
     responseSuffix: "ApiResponse",
     exportName: `ServiceApiBase`,
-    hooks: { lazyQueries: true, mutations: true, queries: true }
+    hooks: { lazyQueries: true, mutations: true, queries: true },
 };
 
 export default config;
