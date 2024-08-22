@@ -9,6 +9,7 @@ const ErrorPage = lazy(() => import("../pages/error-page/error-page"));
 //#region pages
 const PizzaChefPage = lazy(() => import("../pages/pizza-chef/pizza-chef.page"));
 const Customers = lazy(() => import("../pages/customers/customers.page"));
+const CustomersOrder = lazy(() => import("../pages/customers/components/customer-order.component"));
 //#endregion
 
 const router = createBrowserRouter(
@@ -24,8 +25,13 @@ const router = createBrowserRouter(
         },
         {
             path: "/customers",
-            element: <Customers />
+            element: <Customers />,
+        },
+        {
+            path: "/customers/:name",
+            element: <CustomersOrder />,
         }
+
     ]
 );
 

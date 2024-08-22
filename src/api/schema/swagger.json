@@ -111,6 +111,37 @@
                 }
             }
         },
+        "/api/v1/order/get": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "operationId": "get",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/lookup/getStatus": {
             "get": {
                 "tags": [
@@ -127,6 +158,80 @@
                                     "items": {
                                         "$ref": "#/components/schemas/LookupDto"
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/lookup/getPizzas": {
+            "get": {
+                "tags": [
+                    "lookup-controller"
+                ],
+                "operationId": "getPizzas",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LookupDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/customer/search-customer": {
+            "get": {
+                "tags": [
+                    "customer-controller"
+                ],
+                "operationId": "get_1",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CustomerSearchResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/order/delete": {
+            "delete": {
+                "tags": [
+                    "order-controller"
+                ],
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDto"
                                 }
                             }
                         }
@@ -264,6 +369,25 @@
                     },
                     "description": {
                         "type": "string"
+                    }
+                }
+            },
+            "CustomerDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomerSearchResponse": {
+                "type": "object",
+                "properties": {
+                    "customers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CustomerDto"
+                        }
                     }
                 }
             }

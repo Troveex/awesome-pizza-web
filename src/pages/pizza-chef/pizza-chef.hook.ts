@@ -1,10 +1,15 @@
 import { useEffect, useMemo } from "react";
+import { ServiceApi } from "../../api/src/enhanced";
 import StatusOrderEnum from "../../constants/status-order.enum";
+import useNavigationHook from "../../hooks/shared/navigation.hook";
+import { useAppDispatch } from "../../store/hooks";
 import usePizzaChefApiHook from "./pizza-chef.api.hook";
 
 
 const usePizzaChefHook = () => {
 
+    const dispatch = useAppDispatch();
+    const { redirectTo } = useNavigationHook();
     const { getSearchOrder, getSearchOrderResponse, setUpdateStatus, setUpdateStatusResponse, isLoading } = usePizzaChefApiHook();
 
     useEffect(() => {
@@ -39,8 +44,18 @@ const usePizzaChefHook = () => {
         return getSearchOrderResponse?.response?.some((item) => item.status === StatusOrderEnum.DELETED) ?? false;
     }, [getSearchOrderResponse]);
 
+    const redirectToHomePage = () => {
+        redirectTo("/");
+    };
+
+    const invalidatesTags = () => {
+        dispatch(ServiceApi.util.invalidateTags(["UpdateStatusOrder"]));
+    };
+
     return {
         getSearchOrderResponse,
+
+        redirectToHomePage,
 
         startOrder,
         endOrder,

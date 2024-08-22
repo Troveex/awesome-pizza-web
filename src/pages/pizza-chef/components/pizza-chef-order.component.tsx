@@ -77,7 +77,7 @@ const PizzaChefOrderComponent: React.FC<IProps> = (props: IProps): React.ReactEl
                     <Grid container marginTop={2} justifyContent={"center"} spacing={2}>
                         {startOrder && (
                             <Grid item>
-                                <BaseButton type="primary" variant="contained" label="Start order" disabled={orderInProgress} />
+                                <BaseButton type="primary" variant="contained" label="Start order" disabled={orderInProgress} onClick={() => startOrder(order.code ?? "")} />
                             </Grid>
                         )}
                         {endOrder && (
@@ -87,7 +87,7 @@ const PizzaChefOrderComponent: React.FC<IProps> = (props: IProps): React.ReactEl
                         )}
                         {deleteOrder && (
                             <Grid item>
-                                <BaseButton type="error" variant="contained" label="Delete order" />
+                                <BaseButton type="error" variant="contained" label="Delete order" onClick={() => deleteOrder(order.code ?? "")} />
                             </Grid>
                         )}
                     </Grid>
