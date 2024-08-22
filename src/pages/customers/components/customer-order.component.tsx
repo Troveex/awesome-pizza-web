@@ -6,7 +6,7 @@ import useCustomerOrderHook from "./customer-order.hook";
 
 const CustomerOrder = () => {
 
-    const { redirectToCustomer, order, name } = useCustomerOrderHook();
+    const { redirectToCustomer, order, name, lookupStatusResponse } = useCustomerOrderHook();
 
     return (
         <BaseCard title={`Order list ${name?.replace("%20", " ")}`}
@@ -18,7 +18,7 @@ const CustomerOrder = () => {
                 onClick: redirectToCustomer
             }}>
             {order?.map((item: OrderDto) => (
-                <PizzaChefOrderComponent order={item} />
+                <PizzaChefOrderComponent order={item} lookupStatusResponse={lookupStatusResponse ?? []} />
             ))}
         </BaseCard>
     );

@@ -1,6 +1,6 @@
 import { Chip, Divider, Grid } from "@mui/material";
 import React, { useCallback } from "react";
-import { OrderDto, PizzaDto } from "../../../api/src/generated";
+import { GetStatusApiResponse, OrderDto, PizzaDto } from "../../../api/src/generated";
 import BaseButton from "../../../components/base/base-button/base-button.component";
 import BaseCard from "../../../components/base/base-card/base-card.component";
 import BaseLabelValue from "../../../components/base/base-label-value/base-label-value.component";
@@ -8,6 +8,7 @@ import StatusOrderEnum from "../../../constants/status-order.enum";
 
 interface IProps {
     readonly order: OrderDto;
+    readonly lookupStatusResponse: GetStatusApiResponse;
     readonly startOrder?: (code: string) => void;
     readonly endOrder?: (code: string) => void;
     readonly deleteOrder?: (code: string) => void;
@@ -16,21 +17,22 @@ interface IProps {
 
 const PizzaChefOrderComponent: React.FC<IProps> = (props: IProps): React.ReactElement => {
 
-    const { order, startOrder, deleteOrder, endOrder, orderInProgress } = props;
+    const { order, startOrder, deleteOrder, endOrder, orderInProgress, lookupStatusResponse } = props;
 
     const statusChip = useCallback((code: string) => {
+        let description = lookupStatusResponse.find((item) => item.code === code)?.description;
         switch (code) {
             case StatusOrderEnum.BOOKED:
-                return <Chip label={code} color="info" size="small" />;
+                return <Chip label={description} color="info" size="small" />;
                 break;
             case StatusOrderEnum.DELETED:
-                return <Chip label={code} color="error" size="small" />;
+                return <Chip label={description} color="error" size="small" />;
                 break;
             case StatusOrderEnum.COMPLETED:
-                return <Chip label={code} color="success" size="small" />;
+                return <Chip label={description} color="success" size="small" />;
                 break;
             case StatusOrderEnum.IN_PROGRESS:
-                return <Chip label={code} color="warning" size="small" />;
+                return <Chip label={description} color="warning" size="small" />;
                 break;
             default:
                 <></>;

@@ -9,7 +9,7 @@ const useCustomerOrderHook = () => {
 
     const { name } = useParams();
     const { redirectToCustomer } = useCustomersHook();
-    const { getSearchOrder, getSearchOrderResponse } = usePizzaChefApiHook();
+    const { getSearchOrder, getSearchOrderResponse, lookupStatusResponse } = usePizzaChefApiHook();
 
     useEffect(() => {
         getSearchOrder();
@@ -23,6 +23,7 @@ const useCustomerOrderHook = () => {
         redirectToCustomer,
 
         order,
+        lookupStatusResponse,
         name
     };
 };

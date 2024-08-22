@@ -18,6 +18,8 @@ const usePizzaChefApiHook = () => {
         });
     };
 
+    const { data: lookupStatusResponse, isLoading: lookupGetProdottoPfLoading } = ServiceApiBase.useGetStatusQuery();
+
     return {
         getSearchOrder: getSearchOrderPrivate,
         getSearchOrderResponse,
@@ -25,7 +27,9 @@ const usePizzaChefApiHook = () => {
         setUpdateStatus: updateStatusPrivate,
         setUpdateStatusResponse,
 
-        isLoading: getSearchOrderLoading || setUpdateStatusLoading
+        lookupStatusResponse,
+
+        isLoading: getSearchOrderLoading || setUpdateStatusLoading || lookupGetProdottoPfLoading
 
     };
 };

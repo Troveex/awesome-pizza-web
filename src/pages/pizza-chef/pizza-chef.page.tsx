@@ -9,7 +9,7 @@ import usePizzaChefHook from "./pizza-chef.hook";
 
 const PizzaChefPage: React.FC = () => {
 
-    const { getSearchOrderResponse, startOrder, deletetOrder, endOrder, orderBooked, orderCompleted, orderDeletd, orderInProgress, redirectToHomePage } = usePizzaChefHook();
+    const { getSearchOrderResponse, lookupStatusResponse, startOrder, deletetOrder, endOrder, orderBooked, orderCompleted, orderInProgress, redirectToHomePage } = usePizzaChefHook();
 
     return (
         <BaseCard title="Welcome to pizza chef area"
@@ -21,11 +21,11 @@ const PizzaChefPage: React.FC = () => {
                 onClick: redirectToHomePage
             }}>
             <Grid marginX={2}>
-                <PizzaChefOrderInProgress deleteOrder={deletetOrder} endOrder={endOrder} orderInProgress={orderInProgress} getSearchOrderResponse={getSearchOrderResponse} />
+                <PizzaChefOrderInProgress deleteOrder={deletetOrder} endOrder={endOrder} orderInProgress={orderInProgress} getSearchOrderResponse={getSearchOrderResponse} lookupStatusResponse={lookupStatusResponse} />
                 <Divider />
-                <PizzaChefOrderBooked deleteOrder={deletetOrder} orderBooked={orderBooked} getSearchOrderResponse={getSearchOrderResponse} orderInProgress={orderInProgress} startOrder={startOrder} />
+                <PizzaChefOrderBooked deleteOrder={deletetOrder} orderBooked={orderBooked} getSearchOrderResponse={getSearchOrderResponse} orderInProgress={orderInProgress} startOrder={startOrder} lookupStatusResponse={lookupStatusResponse} />
                 <Divider />
-                <PizzaChefOrderCompleted orderCompleted={orderCompleted} getSearchOrderResponse={getSearchOrderResponse} />
+                <PizzaChefOrderCompleted orderCompleted={orderCompleted} getSearchOrderResponse={getSearchOrderResponse} lookupStatusResponse={lookupStatusResponse} />
                 <Divider />
                 {/* <Grid marginY={2}>
                     <Typography gutterBottom variant="h5" component="div">

@@ -10,7 +10,7 @@ const usePizzaChefHook = () => {
 
     const dispatch = useAppDispatch();
     const { redirectTo } = useNavigationHook();
-    const { getSearchOrder, getSearchOrderResponse, setUpdateStatus, setUpdateStatusResponse, isLoading } = usePizzaChefApiHook();
+    const { getSearchOrder, getSearchOrderResponse, setUpdateStatus, lookupStatusResponse } = usePizzaChefApiHook();
 
     useEffect(() => {
         getSearchOrder();
@@ -54,6 +54,7 @@ const usePizzaChefHook = () => {
 
     return {
         getSearchOrderResponse,
+        lookupStatusResponse,
 
         redirectToHomePage,
 
